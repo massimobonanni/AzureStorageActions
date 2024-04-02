@@ -13,29 +13,18 @@ namespace AzureStorageActions.Console.Commands.GenerateBlobs
 {
     internal static class ContentGenerator
     {
-        public static BlobData GenerateContent(string blobPrefix, BlobContentType type)
+        private static Random random = new Random(DateTime.Now.Millisecond);
+        public static BlobData GenerateContent(IEnumerable<string> blobPrefixes, IEnumerable<BlobContentType> types)
         {
+            var blobPrefix = blobPrefixes.ElementAt(random.Next(0, blobPrefixes.Count()));
+            var type = types.ElementAt(random.Next(0, types.Count()));
+
             var data = new BlobData();
             data.Name = GenerateBlobName(blobPrefix, type);
             data.Data = new BinaryData(dataGeneratorsMap[type].Invoke());
             return data;
         }
 
-        private static BinaryData GenerateJsonContent()
-        {
-            throw new NotImplementedException();
-        }
-
-        private static BinaryData GenerateImageContent()
-        {
-            return new BinaryData(JsonGenerator.Generate());
-        }
-
-        private static BinaryData GenerateTextContent()
-        {
-          
-            return new BinaryData(TextGenerator.Generate());
-        }
         private static string GenerateBlobName(string blobPrefix, BlobContentType type)
         {
             string extension = extensionsMap[type];

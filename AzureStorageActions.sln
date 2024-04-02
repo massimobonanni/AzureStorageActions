@@ -5,7 +5,11 @@ VisualStudioVersion = 17.9.34701.34
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AzureStorageActions.FunctionApp", "AzureStorageActions.FunctionApp\AzureStorageActions.FunctionApp.csproj", "{A580676C-C80B-44C1-BC2B-F42181E3D513}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureStorageActions.Console", "AzureStorageActions.Console\AzureStorageActions.Console.csproj", "{9211D9ED-75D2-4753-B928-FAECB422A0BF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AzureStorageActions.Console", "AzureStorageActions.Console\AzureStorageActions.Console.csproj", "{9211D9ED-75D2-4753-B928-FAECB422A0BF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{C54FCDA1-D08D-4B2D-B750-AB45077DCD96}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureStorageActions.FunctionApp.Tests", "Tests\AzureStorageActions.FunctionApp.tests\AzureStorageActions.FunctionApp.Tests.csproj", "{6E6059E0-ACFF-456A-BB85-F72137234587}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,9 +25,16 @@ Global
 		{9211D9ED-75D2-4753-B928-FAECB422A0BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9211D9ED-75D2-4753-B928-FAECB422A0BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9211D9ED-75D2-4753-B928-FAECB422A0BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E6059E0-ACFF-456A-BB85-F72137234587}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E6059E0-ACFF-456A-BB85-F72137234587}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E6059E0-ACFF-456A-BB85-F72137234587}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E6059E0-ACFF-456A-BB85-F72137234587}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6E6059E0-ACFF-456A-BB85-F72137234587} = {C54FCDA1-D08D-4B2D-B750-AB45077DCD96}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DA9F9AEA-053F-41D8-B4BC-F5754762C73B}

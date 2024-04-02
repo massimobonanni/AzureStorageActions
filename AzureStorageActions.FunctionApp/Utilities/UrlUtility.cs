@@ -52,5 +52,20 @@ namespace AzureStorageActions.FunctionApp.Utilities
 
             return null;
         }
+
+        public static bool IsBlobNameStartsWith(string url, string prefix)
+        {
+            Uri uri = new Uri(url);
+            string[] segments = uri.AbsolutePath.Split('/');
+
+            // The first segment will be empty because the path starts with a slash
+            // The third segment is the blob name
+            if (segments.Length >= 3)
+            {
+                return segments.Last().StartsWith(prefix);
+            }
+
+            return false;
+        }
     }
 }

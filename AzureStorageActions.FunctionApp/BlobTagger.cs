@@ -26,6 +26,7 @@ namespace AzureStorageActions.FunctionApp
         public async Task Run([EventGridTrigger] EventGridEvent eventGridEvent)
         {
             logger.LogInformation(eventGridEvent.Data.ToString());
+
             if (eventGridEvent.EventType != "Microsoft.Storage.BlobCreated")
             {
                 logger.LogWarning("Event type is not supported.");

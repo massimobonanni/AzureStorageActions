@@ -94,6 +94,12 @@ namespace AzureStorageActions.FunctionApp.Services
 
             if (!UrlUtility.IsContainerNamesMatch(blobData.url, configuration.Containers))
             {
+                logger.LogInformation($"Blob {blobData.url} is not in a supported container.");
+                return false;
+            }
+            if (!UrlUtility.IsBlobNameStartsWith(blobData.url, configuration.BlobPrefix))
+            {
+                logger.LogInformation($"Blob {blobData.url} does not have the expected prefix.");
                 return false;
             }
 
@@ -110,6 +116,7 @@ namespace AzureStorageActions.FunctionApp.Services
                 blobClient = new BlobClient(new Uri(blobData.url),
                     new StorageSharedKeyCredential(storageName,this.configuration.StorageAccessKey));
             }
+
             try
             {
                 await blobClient.SetMetadataAsync(new Dictionary<string, string>
