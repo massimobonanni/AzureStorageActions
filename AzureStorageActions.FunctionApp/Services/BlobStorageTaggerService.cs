@@ -119,7 +119,7 @@ namespace AzureStorageActions.FunctionApp.Services
 
             try
             {
-                await blobClient.SetMetadataAsync(new Dictionary<string, string>
+                await blobClient.SetTagsAsync(new Dictionary<string, string>
                     {
                         { this.configuration.Tag.Key, this.configuration.Tag.Value }
                     },
