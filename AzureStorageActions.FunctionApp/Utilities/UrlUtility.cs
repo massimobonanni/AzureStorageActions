@@ -37,5 +37,20 @@ namespace AzureStorageActions.FunctionApp.Utilities
 
             return false;
         }
+
+        public static string ExtractStorageName(string url)
+        {
+            Uri uri = new Uri(url);
+            string[] segments = uri.AbsolutePath.Split('/');
+
+            // The first segment will be empty because the path starts with a slash
+            // The second segment is the container name
+            if (segments.Length > 2)
+            {
+                return segments[1].Split('.').FirstOrDefault();
+            }
+
+            return null;
+        }
     }
 }
