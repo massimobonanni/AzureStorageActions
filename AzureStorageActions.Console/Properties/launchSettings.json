@@ -1,0 +1,20 @@
+{
+  "profiles": {
+    "WSL": {
+      "commandName": "WSL2",
+      "distributionName": ""
+    },
+    "Create 10 text blobs": {
+      "commandName": "Project",
+      "commandLineArgs": "genblobs --connection-string \"\" --number-of-blobs 10 --container-name \"documents\" --blob-content-type \"text\" --blob-prefix \"prod_\""
+    },
+    "Create 10 image blobs": {
+      "commandName": "Project",
+      "commandLineArgs": "genblobs --connection-string \"\" --number-of-blobs 10 --container-name \"documents\" --blob-content-type \"image\" "
+    },
+    "Create 10 json blobs": {
+      "commandName": "Project",
+      "commandLineArgs": "genblobs --connection-string \"\" --number-of-blobs 10 --container-name \"documents\" --blob-content-type \"json\" "
+    }
+  }
+}

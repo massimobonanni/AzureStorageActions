@@ -1,0 +1,21 @@
+{
+  "topic": "/subscriptions/02e4a7f0-e0bc-4ae8-8fa8-73f1686fb788/resourceGroups/StorageActionsDemo-rg/providers/Microsoft.Storage/storageAccounts/storageactionsdata",
+  "subject": "/blobServices/default/containers/document-function/blobs/azure-durable-functions-succinctly.png",
+  "eventType": "Microsoft.Storage.BlobCreated",
+  "id": "db4dc4f4-a01e-003c-79ca-841b82065a44",
+  "data": {
+    "api": "PutBlob",
+    "clientRequestId": "4e71cfb6-c13f-4c3a-9b55-416004ef503a",
+    "requestId": "db4dc4f4-a01e-003c-79ca-841b82000000",
+    "eTag": "0x8DC52E20719022C",
+    "contentType": "image/png",
+    "contentLength": 57284,
+    "blobType": "BlockBlob",
+    "url": "https://storageactionsdata.blob.core.windows.net/document-function/azure-durable-functions-succinctly.png",
+    "sequencer": "00000000000000000000000000021AE70000000004d0161e",
+    "storageDiagnostics": { "batchId": "9b14b715-c006-004a-00ca-849f3e000000" }
+  },
+  "dataVersion": "",
+  "metadataVersion": "1",
+  "eventTime": "2024-04-02T06:56:31.4943795Z"
+}
