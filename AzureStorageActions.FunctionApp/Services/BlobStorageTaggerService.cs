@@ -103,6 +103,27 @@ namespace AzureStorageActions.FunctionApp.Services
                 return false;
             }
 
+            BlobClient blobClient = CreateBlobClient(blobData);
+
+            try
+            {
+                await blobClient.SetTagsAsync(new Dictionary<string, string>
+                    {
+                        { this.configuration.Tag.Key, this.configuration.Tag.Value }
+                    },
+                    null,
+                    cancellationToken);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, $"Error tagging blob {blobData.url}");
+                return false;
+            }
+        }
+
+        private BlobClient CreateBlobClient(BlobCreatedData blobData)
+        {
             BlobClient blobClient = null;
 
             if (this.configuration.UseManagedIdentity)
@@ -112,26 +133,12 @@ namespace AzureStorageActions.FunctionApp.Services
             }
             else
             {
-                var storageName = UrlUtility.ExtractStorageName(blobData.url); 
+                var storageName = UrlUtility.ExtractStorageName(blobData.url);
                 blobClient = new BlobClient(new Uri(blobData.url),
-                    new StorageSharedKeyCredential(storageName,this.configuration.StorageAccessKey));
+                    new StorageSharedKeyCredential(storageName, this.configuration.StorageAccessKey));
             }
 
-            try
-            {
-                await blobClient.SetTagsAsync(new Dictionary<string, string>
-                    {
-                        { this.configuration.Tag.Key, this.configuration.Tag.Value }
-                    },
-                    null,  
-                    cancellationToken);
-                return true;
-            }
-            catch (Exception ex)
-            {
-                logger.LogError(ex, $"Error tagging blob {blobData.url}");
-                return false;
-            }
+            return blobClient;
         }
     }
 

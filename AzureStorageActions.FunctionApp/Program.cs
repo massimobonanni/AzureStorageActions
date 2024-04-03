@@ -13,6 +13,7 @@ var host = new HostBuilder()
 
         services.AddScoped<IBlobRecoverer, BlobStorageService>();
         services.AddScoped<IBlobTagger, BlobStorageTaggerService>();
+        services.AddScoped<IBlobInventoryAnalyzer, BlobStorageInventoryService>();
     })
     .Build();
 
