@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AzureStorageActions.Console.Commands.GenerateBlobs.Image
+namespace AzureStorageActions.Console.Urilities.Image
 {
     internal static class ImageGenerator
     {
@@ -35,7 +35,7 @@ namespace AzureStorageActions.Console.Commands.GenerateBlobs.Image
                 }
             }
 
-            return bitmap.Encode(SKEncodedImageFormat.Jpeg,100).ToArray();
+            return bitmap.Encode(SKEncodedImageFormat.Jpeg, 100).ToArray();
         }
     }
 }

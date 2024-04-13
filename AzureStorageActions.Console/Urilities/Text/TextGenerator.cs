@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AzureStorageActions.Console.Commands.GenerateBlobs.Text
+namespace AzureStorageActions.Console.Urilities.Text
 {
     internal static class TextGenerator
     {

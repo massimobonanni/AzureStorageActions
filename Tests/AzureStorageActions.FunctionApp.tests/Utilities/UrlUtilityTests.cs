@@ -40,7 +40,7 @@ namespace AzureStorageActions.FunctionApp.Tests
 
             string result = UrlUtility.ExtractStorageName(url);
 
-            Assert.Equal("containername", result);
+            Assert.Equal("storageaccount", result);
         }
         #endregion ExtractStorageName method
 

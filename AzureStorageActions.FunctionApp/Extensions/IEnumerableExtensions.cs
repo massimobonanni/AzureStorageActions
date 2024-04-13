@@ -13,12 +13,28 @@ namespace System.Collections.Generic
             int index, KeyValuePair<string, string> tag)
         {
             var tagField = source.ElementAt(index);
-            var tagValueColumn = new Dictionary<string, string>(
-                JsonSerializer.Deserialize<Dictionary<string, string>>(tagField),
-                StringComparer.OrdinalIgnoreCase);
+            if (string.IsNullOrEmpty(tagField))
+                return false;
 
-            return tagValueColumn.ContainsKey(tag.Key) && 
-                tagValueColumn[tag.Key].Equals(tag.Value,StringComparison.OrdinalIgnoreCase);
+            try
+            {
+                var tagValueColumn = JsonSerializer.Deserialize<IEnumerable<IDictionary<string, string>>>(tagField);
+
+                foreach (var item in tagValueColumn)
+                {
+                    foreach (var itemTag in item)
+                    {
+                        if (string.Equals(itemTag.Key, tag.Key, StringComparison.OrdinalIgnoreCase) &&
+                                 string.Equals(itemTag.Value, tag.Value, StringComparison.OrdinalIgnoreCase))
+                            return true;
+                    }
+                }
+            }
+            catch
+            {
+            }
+            
+            return false;
         }
     }
 }

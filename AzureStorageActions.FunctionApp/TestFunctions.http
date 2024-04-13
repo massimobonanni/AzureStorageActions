@@ -1,0 +1,29 @@
+# For more info on HTTP files go to https://aka.ms/vs/httpfile
+
+
+# BlobDeleter
+POST http://localhost:7233/runtime/webhooks/EventGrid?functionName=BlobDeleter
+Content-Type: application/json
+aeg-event-type: Notification
+
+{
+    "topic":"/subscriptions/02e4a7f0-e0bc-4ae8-8fa8-73f1686fb788/resourceGroups/StorageActionsDemo-rg/providers/Microsoft.Storage/storageAccounts/storageactionsdata",
+    "subject":"BlobDataManagement/BlobInventory",
+    "eventType":"Microsoft.Storage.BlobInventoryPolicyCompleted",
+    "id":"13e12bdc-702b-42f3-a817-9acf1c46a792",
+    "data":
+    {
+        "scheduleDateTime":"2024-04-03T03:08:42Z",
+        "accountName":"storageactionsdata",
+        "ruleName":"blobDeletingRule",
+        "policyRunStatus":"Succeeded",
+        "policyRunStatusMessage":"Inventory run succeeded, refer manifest file for inventory details.",
+        "policyRunId":"f283c63a-2fa5-4902-8206-c10491a562e0",
+        "manifestBlobUrl":"https://storageactionsdata.blob.core.windows.net/blobdeleting-inventoy/2024/04/03/03-08-42/blobDeletingRule/blobDeletingRule-manifest.json"
+    },
+    "dataVersion":"1.0",
+    "metadataVersion":"1",
+    "eventTime":"2024-04-03T03:28:21Z"
+}
+
+###

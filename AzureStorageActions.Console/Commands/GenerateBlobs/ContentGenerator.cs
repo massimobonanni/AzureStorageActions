@@ -1,6 +1,6 @@
-﻿using AzureStorageActions.Console.Commands.GenerateBlobs.Image;
-using AzureStorageActions.Console.Commands.GenerateBlobs.Json;
-using AzureStorageActions.Console.Commands.GenerateBlobs.Text;
+﻿using AzureStorageActions.Console.Urilities.Image;
+using AzureStorageActions.Console.Urilities.Json;
+using AzureStorageActions.Console.Urilities.Text;
 using System;
 using System.Collections.Generic;
 using System.Linq;

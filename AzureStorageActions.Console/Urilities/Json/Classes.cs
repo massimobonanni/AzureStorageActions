@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AzureStorageActions.Console.Commands.GenerateBlobs.Json
+namespace AzureStorageActions.Console.Urilities.Json
 {
     internal class Order
     {
@@ -24,8 +24,8 @@ namespace AzureStorageActions.Console.Commands.GenerateBlobs.Json
     {
         public User(int userId, string ssn)
         {
-            this.Id = userId;
-            this.SSN = ssn;
+            Id = userId;
+            SSN = ssn;
         }
 
         public int Id { get; set; }

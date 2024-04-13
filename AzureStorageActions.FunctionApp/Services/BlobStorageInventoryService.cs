@@ -109,8 +109,9 @@ namespace AzureStorageActions.FunctionApp.Services
                     PropertyNameCaseInsensitive = true
                 });
             }
-            catch
+            catch (Exception ex)
             {
+                logger.LogError(ex, $"Error reading manifest {manifestBlobUrl}");
                 result = null;
             }
 
@@ -158,8 +159,8 @@ namespace AzureStorageActions.FunctionApp.Services
                                         blobsToDelete.Add($"{manifest.Endpoint}/{fields[nameColumnIndex]}");
                                     }
                                 }
+                                rowIndex++;
                             }
-                            rowIndex++;
                         }
                     }
                 }

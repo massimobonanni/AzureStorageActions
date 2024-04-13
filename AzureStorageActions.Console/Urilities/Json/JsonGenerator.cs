@@ -6,7 +6,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace AzureStorageActions.Console.Commands.GenerateBlobs.Json
+namespace AzureStorageActions.Console.Urilities.Json
 {
     internal static class JsonGenerator
     {
@@ -37,7 +37,7 @@ namespace AzureStorageActions.Console.Commands.GenerateBlobs.Json
         {
             var user = userPrototipe.Generate();
 
-            var jsonUser = JsonSerializer.Serialize<User>(user,
+            var jsonUser = JsonSerializer.Serialize(user,
                 new JsonSerializerOptions()
                 {
                     WriteIndented = true,
