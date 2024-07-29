@@ -399,3 +399,5 @@ FodyWeavers.xsd
 /AzureStorageActions.FunctionApp/Properties/ServiceDependencies/storagemanagementfunc - Zip Deploy
 /AzureStorageActions.FunctionApp/Properties/serviceDependencies.storagemanagementfunc - Zip Deploy.json
 /AzureStorageActions.Console/Properties/launchSettings.json
+/AzureStorageActions.FunctionApp/Properties/ServiceDependencies/storemanagementfunc - Zip Deploy
+*.json
