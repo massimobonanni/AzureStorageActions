@@ -94,12 +94,12 @@ namespace AzureStorageActions.FunctionApp.Services
 
             if (!UrlUtility.IsContainerNamesMatch(blobData.url, configuration.Containers))
             {
-                logger.LogInformation($"Blob {blobData.url} is not in a supported container.");
+                logger.LogWarning($"Blob {blobData.url} is not in a supported container.");
                 return false;
             }
             if (!UrlUtility.IsBlobNameStartsWith(blobData.url, configuration.BlobPrefix))
             {
-                logger.LogInformation($"Blob {blobData.url} does not have the expected prefix.");
+                logger.LogWarning($"Blob {blobData.url} does not have the expected prefix.");
                 return false;
             }
 
