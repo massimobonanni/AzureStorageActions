@@ -1,4 +1,5 @@
-﻿using Azure.Storage.Blobs;
+﻿using Azure.Identity;
+using Azure.Storage.Blobs;
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
@@ -24,13 +25,13 @@ namespace AzureStorageActions.Console.Commands.GenerateBlobs
         public GenerateBlobsCommand() :
             base("genblobs", "Generates a set of random blobs in a storage account")
         {
-            var storageConnectionStringOption = new Option<string>(
-                new string[] { "--connection-string", "-c" },
-                "The connection string to the storage account")
+            var storageUriOption = new Option<Uri>(
+                new string[] { "--storage-uri", "-u" },
+                "The storage uri.")
             {
                 IsRequired = true
             };
-            this.AddOption(storageConnectionStringOption);
+            this.AddOption(storageUriOption);
 
             var numberOfBlobsOption = new Option<int>(
                 new string[] { "--number-of-blobs", "-n" },
@@ -51,7 +52,7 @@ namespace AzureStorageActions.Console.Commands.GenerateBlobs
             var blobContentTypeOptions = new Option<IEnumerable<BlobContentType>>(
                 new string[] { "--blob-content-type", "-ct" },
                 () => new BlobContentType[] { BlobContentType.Text },
-                "The content type to use for the blobs")
+                "The content type to use for the blobs. Valid values: Text, Json, Jpeg")
             {
                 IsRequired = false
             };
@@ -65,7 +66,7 @@ namespace AzureStorageActions.Console.Commands.GenerateBlobs
             };
             this.AddOption(blobPrefixOption);
 
-            this.SetHandler(CommandHandler, storageConnectionStringOption, numberOfBlobsOption, containerNameOption, blobContentTypeOptions, blobPrefixOption);
+            this.SetHandler(CommandHandler, storageUriOption, numberOfBlobsOption, containerNameOption, blobContentTypeOptions, blobPrefixOption);
         }
 
         /// <summary>
@@ -76,13 +77,15 @@ namespace AzureStorageActions.Console.Commands.GenerateBlobs
         /// <param name="containerName">The name of the container to generate the blobs in.</param>
         /// <param name="contentType">The content type to use for the blobs.</param>
         /// <param name="blobPrefix">The prefix to use for the blob names.</param>
-        private async Task CommandHandler(string connectionString, int numberOfBlobs, string containerName,
+        private async Task CommandHandler(Uri storageUri, int numberOfBlobs, string containerName,
             IEnumerable<BlobContentType> contentTypes, IEnumerable<string> blobPrefixes)
         {
             System.Console.WriteLine($"Generating {numberOfBlobs} blobs in container {containerName}");
 
             // Create a ContainerService client to access the container in the Azure Storage account
-            BlobServiceClient blobServiceClient = new BlobServiceClient(connectionString);
+            var credential = new InteractiveBrowserCredential();
+            BlobServiceClient blobServiceClient = new BlobServiceClient(storageUri, credential);
+            
             BlobContainerClient containerClient = blobServiceClient.GetBlobContainerClient(containerName);
 
             // Upload numberOfBlobs blobs

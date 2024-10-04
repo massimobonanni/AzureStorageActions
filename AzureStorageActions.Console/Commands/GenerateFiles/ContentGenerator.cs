@@ -16,11 +16,13 @@ namespace AzureStorageActions.Console.Commands.GenerateFiles
         private static Random random = new Random(DateTime.Now.Millisecond);
         public static FileData GenerateContent(IEnumerable<string> filePrefixes, IEnumerable<FileContentType> types)
         {
-            var blobPrefix = filePrefixes.ElementAt(random.Next(0, filePrefixes.Count()));
+            string filePrefix = "";
+            if (filePrefixes!=null && filePrefixes.Any())
+                filePrefix = filePrefixes.ElementAt(random.Next(0, filePrefixes.Count()));
             var type = types.ElementAt(random.Next(0, types.Count()));
 
             var data = new FileData();
-            data.Name = GenerateBlobName(blobPrefix, type);
+            data.Name = GenerateBlobName(filePrefix, type);
             data.Data = dataGeneratorsMap[type].Invoke();
             return data;
         }

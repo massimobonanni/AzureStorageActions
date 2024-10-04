@@ -14,7 +14,7 @@ namespace AzureStorageActions.Console.Commands.GenerateFiles
     /// Represents a command that generates a set of random blobs in a storage account.
     /// </summary>
     /// <example>
-    ///     asa.exe genblobs --connection-string "DefaultEndpointsProtocol=https;AccountName=youraccount;AccountKey=yourkey" --number-of-blobs 10 --container-name "yourcontainer" --blob-content-type "text" --blob-prefix "prod"
+    ///     asa.exe genfiles --connection-string "DefaultEndpointsProtocol=https;AccountName=youraccount;AccountKey=yourkey" --number-of-blobs 10 --container-name "yourcontainer" --blob-content-type "text" --blob-prefix "prod"
     /// </example>
     internal class GenerateFilesCommand : Command
     {
@@ -43,7 +43,7 @@ namespace AzureStorageActions.Console.Commands.GenerateFiles
             var fileContentTypeOptions = new Option<IEnumerable<FileContentType>>(
                 new string[] { "--file-content-type", "-ct" },
                 () => new FileContentType[] { FileContentType.Text },
-                "The content type to use for the files")
+                "The content type to use for the files. Valid values: Text, Json, Jpeg")
             {
                 IsRequired = false
             };
